@@ -50,9 +50,20 @@ for dirpath, dirnames, filenames in os.walk(tagging_dir):
         data_files.append([dirpath, [os.path.join(dirpath, f) for f in filenames]])
 
 
+import sys
+
+if 'sdist' in sys.argv:
+    import mmf_release_tools
+    version = mmf_release_tools.generate_release_version(tagging.get_version(), __file__)
+    mmf_release_tools.write_release_version(version)
+else:
+    with open("RELEASE-VERSION", "r") as f:
+        version = f.readlines()[0].strip()
+
+
 setup(
     name = 'django-tagging',
-    version = tagging.get_version(),
+    version = version,
     description = 'Generic tagging application for Django',
     author = 'Jonathan Buchanan',
     author_email = 'jonathan.buchanan@gmail.com',

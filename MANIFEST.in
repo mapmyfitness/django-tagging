@@ -3,5 +3,6 @@ include INSTALL.txt
 include LICENSE.txt
 include MANIFEST.in
 include README.txt
+include RELEASE-VERSION
 recursive-include docs *.txt
 recursive-include tagging/tests *.txt
